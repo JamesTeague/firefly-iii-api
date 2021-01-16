@@ -1,0 +1,71 @@
+{
+  "name": "place-package-name-here",
+  "version": "0.0.1",
+  "description": "template for setting up project",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git-url-goes-here"
+  },
+  "homepage": "git-url-goes-here#readme",
+  "dependencies": {},
+  "main": "index.js",
+  "module": "",
+  "files": [],
+  "types": "",
+  "scripts": {
+    "build": "rm -rf dist && rollup -c",
+    "prettier": "prettier --write 'src/**/*.{js,ts}'",
+    "prettier:check": "prettier --check 'src/**/*.{js,ts}'",
+    "preversion": "npm run test",
+    "version": "",
+    "postversion": "",
+    "prepublishOnly": "npm run test && npm run build",
+    "prerelease": "git checkout master && git pull origin master && npm i && git add .",
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version -a --no-verify",
+    "postrelease": "run-s release:*",
+    "release:tags": "git push --follow-tags origin master",
+    "test": "jest --passWithNoTests"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "git-url-goes-here/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/jest": "^26.0.20",
+    "babel-jest": "^26.6.3",
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8",
+    "jest": "^26.6.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "rollup": "^2.36.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "standard-version": "^9.1.0",
+    "ts-jest": "^26.4.4",
+    "ts-loader": "^8.0.14",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.1.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  }
+}

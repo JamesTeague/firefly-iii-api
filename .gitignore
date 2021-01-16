@@ -1,0 +1,8 @@
+# JetBrains
+.idea
+
+# vs-code
+.history
+
+# Node Modules
+node_modules
