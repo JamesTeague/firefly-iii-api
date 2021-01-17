@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TransactionWrapper } from '../types/transaction';
 import { createTransactionApi } from './transaction';
 
 interface ApiOptions {
@@ -6,7 +7,7 @@ interface ApiOptions {
   personalAccessToken: string;
 }
 
-const fireFly = (options: ApiOptions) => {
+const fireFly = (options: ApiOptions): FireFlyApi => {
   const axiosInstance = axios.create({
     baseURL: options.fireFlyUrl,
     headers: {
@@ -14,5 +15,7 @@ const fireFly = (options: ApiOptions) => {
     },
   });
 
-  return createTransactionApi(axiosInstance);
+  return {
+    ...createTransactionApi(axiosInstance),
+  };
 };
