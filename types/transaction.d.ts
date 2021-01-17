@@ -1,3 +1,5 @@
+import { Meta, ObjectLink, PageLink } from "./main";
+
 export enum TransactionType {
   ALL = 'all',
   WITHDRAWAL = 'withdrawal',
@@ -12,6 +14,7 @@ export enum AttachableType {
   TRANSACTION_JOURNAL = 'TransactionJournal',
   IMPORT_JOB = 'ImportJob',
 }
+
 export type TransactionSplitRequest = {
   type: string;
   date: string;
@@ -133,13 +136,6 @@ export type Transaction = {
   transactions: TransactionSplit[];
 };
 
-export type ObjectLink = {
-  0: {
-    rel: string;
-    uri: string;
-  };
-  self: string;
-};
 
 export type TransactionRead = {
   type: string;
@@ -173,16 +169,6 @@ export type Attachment = {
   readonly size: number;
 };
 
-export type Meta = {
-  pagination: {
-    total: number;
-    count: number;
-    per_page: number;
-    current_page: number;
-    total_pages: number;
-  };
-};
-
 export type AttachmentRead = {
   type: string;
   id: number;
@@ -208,12 +194,6 @@ export type PiggyBankEvent = {
   amount: string;
   journal_id: number;
   transaction_id: number;
-};
-
-export type PageLink = {
-  self: string;
-  first: string;
-  last: string;
 };
 
 export type PiggyBankEventRead = {
