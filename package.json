@@ -1,18 +1,20 @@
 {
-  "name": "place-package-name-here",
-  "version": "0.0.1",
-  "description": "template for setting up project",
-  "author": "",
+  "name": "firefly-iii-api",
+  "version": "0.1.0",
+  "description": "TS library for firefly-iii API",
+  "author": "James Teague II <james@teague.dev>",
   "repository": {
     "type": "git",
-    "url": "git-url-goes-here"
+    "url": "https://github.com/JamesTeague/firefly-iii-api.git"
   },
-  "homepage": "git-url-goes-here#readme",
-  "dependencies": {},
-  "main": "index.js",
+  "homepage": "https://github.com/JamesTeague/firefly-iii-api#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "main": "index.ts",
   "module": "",
   "files": [],
-  "types": "",
+  "types": "main.d.ts",
   "scripts": {
     "build": "rm -rf dist && rollup -c",
     "prettier": "prettier --write 'src/**/*.{js,ts}'",
@@ -28,9 +30,9 @@
     "test": "jest --passWithNoTests"
   },
   "keywords": [],
-  "license": "MIT",
+  "license": "GNU GPLv3",
   "bugs": {
-    "url": "git-url-goes-here/issues"
+    "url": "https://github.com/JamesTeague/firefly-iii-api/issues"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
