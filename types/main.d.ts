@@ -1,8 +1,16 @@
+/// <reference path="./about.d.ts" />
 /// <reference path="./transaction.d.ts" />
 
-import { TransactionWrapper } from "./transaction";
+import { AboutWrapper } from './about';
+import { TransactionWrapper } from './transaction';
 
-export interface FireFlyApi extends TransactionWrapper {}
+export interface FireFlyApi extends TransactionWrapper, AboutWrapper {}
+
+export interface ApiOptions {
+  fireFlyUrl: string;
+  personalAccessToken: string;
+}
+
 export type PageLink = {
   self: string;
   first: string;

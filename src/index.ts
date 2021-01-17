@@ -1,13 +1,9 @@
 import axios from 'axios';
-import { FireFlyApi } from '../types/main';
+import { ApiOptions, FireFlyApi } from '../types/main';
+import { createAboutApi } from './about';
 import { createTransactionApi } from './transaction';
 
-interface ApiOptions {
-  fireFlyUrl: string;
-  personalAccessToken: string;
-}
-
-const fireFly = (options: ApiOptions): FireFlyApi => {
+export const fireFly = (options: ApiOptions): FireFlyApi => {
   const axiosInstance = axios.create({
     baseURL: options.fireFlyUrl,
     headers: {
@@ -17,5 +13,6 @@ const fireFly = (options: ApiOptions): FireFlyApi => {
 
   return {
     ...createTransactionApi(axiosInstance),
+    ...createAboutApi(axiosInstance),
   };
 };
