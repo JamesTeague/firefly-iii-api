@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TransactionWrapper } from '../types/transaction';
+import { FireFlyApi } from '../types/main';
 import { createTransactionApi } from './transaction';
 
 interface ApiOptions {
