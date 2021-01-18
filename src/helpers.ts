@@ -18,11 +18,18 @@ export const buildQueryParameters = (parameters: Object): string => {
   return queryParameters;
 };
 
-const validateResponse = (response: AxiosResponse<any>) => {
+const validateResponse = (
+  response: AxiosResponse<any>,
+  codesToSuppress?: number[]
+) => {
   const { status, data } = response;
 
   if (status === 422) {
     throw new Error(data.message);
+  }
+
+  if (codesToSuppress?.includes(status)) {
+    return data;
   }
 
   return data;
@@ -47,7 +54,8 @@ export const putOrThrow = async (
 export const getOrThrow = async (
   axios: AxiosInstance,
   url: string,
-  parameters?: Object
+  parameters?: Object,
+  codesToSuppress?: number[]
 ) => {
   let queryParameters = '';
   let axiosUrl = url;
@@ -60,5 +68,5 @@ export const getOrThrow = async (
     axiosUrl = axiosUrl.concat(`?${queryParameters}`);
   }
 
-  return validateResponse(await axios.get(axiosUrl));
+  return validateResponse(await axios.get(axiosUrl), codesToSuppress);
 };

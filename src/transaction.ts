@@ -23,7 +23,7 @@ const getTransactions = (axiosInstance: AxiosInstance) => (
 const getTransaction = (axiosInstance: AxiosInstance) => (
   id: number
 ): Promise<TransactionSingle> =>
-  getOrThrow(axiosInstance, `/api/v1/transactions/${id}`);
+  getOrThrow(axiosInstance, `/api/v1/transactions/${id}`, undefined, [404]);
 
 const updateTransaction = (axiosInstance: AxiosInstance) => (
   id: number,
@@ -34,29 +34,44 @@ const updateTransaction = (axiosInstance: AxiosInstance) => (
 const deleteTransaction = (axiosInstance: AxiosInstance) => async (
   id: number
 ): Promise<void> => {
-  await axiosInstance.delete(`/api/v1/transactions/${id}`);
+  await axiosInstance.delete(`/api/v1/transactions/${id}`).catch();
 };
 
 const listAttachments = (axiosInstance: AxiosInstance) => (
   id: number,
   page?: number
 ): Promise<AttachmentRead> =>
-  getOrThrow(axiosInstance, `/api/v1/transactions/${id}/attachments`, {
-    page,
-  });
+  getOrThrow(
+    axiosInstance,
+    `/api/v1/transactions/${id}/attachments`,
+    {
+      page,
+    },
+    [404]
+  );
 
 const getPiggyBankEvents = (axiosInstance: AxiosInstance) => (
   id: number,
   page?: number
 ): Promise<PiggyBankEventArray> =>
-  getOrThrow(axiosInstance, `/api/v1/transactions/${id}/piggy_bank_events`, {
-    page,
-  });
+  getOrThrow(
+    axiosInstance,
+    `/api/v1/transactions/${id}/piggy_bank_events`,
+    {
+      page,
+    },
+    [404]
+  );
 
 const getTransactionByJournal = (axiosInstance: AxiosInstance) => (
   id: number
 ): Promise<TransactionSingle> =>
-  getOrThrow(axiosInstance, `/api/v1/transactions/transaction-journals/${id}`);
+  getOrThrow(
+    axiosInstance,
+    `/api/v1/transactions/transaction-journals/${id}`,
+    undefined,
+    [404]
+  );
 
 export const createTransactionApi = (
   axiosInstance: AxiosInstance
